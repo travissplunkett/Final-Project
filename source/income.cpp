@@ -131,6 +131,44 @@ PV::PV() : Income(true){
     amount = (perHour*hours)+totalFees;
     amount = (int)(100*((amount)+0.5))/100; //Sets precision to two decimal points
 }
+string PV::toString(){
+    string str;
+    str += "Name: ";
+    str += name;
+    str += "\n";
+    str += "Type: ";
+    if(isPhoto == true){
+        str += "Photo ";
+    } else {
+        str += "Video ";
+    }
+    str += "\n";
+    str += "Wage: ";
+    str += to_string(hourly);
+    str += "\n";
+    str += "Fees (";
+    str += to_string(totalFees);
+    str += ")\n";
+    for(int i=0; i<fees.size(); i++){
+        str += "   ";
+        str += to_string(i+1);
+        str += ". ";
+        str += fees[i]->getName();
+        str += ": ";
+        str += to_string(fees[i]->getAmount());
+        str += "\n";
+    }
+    str += "Costs: ";
+    str += to_string(totalCost);
+    str += "\n";
+    str += "Net Revanue: ";
+    str += to_string(amount);
+    str += "\n";
+    str += "Total Profit: ";
+    str += to_string(profit);
+    str += "\n";
+    return str;
+}
 
 //Constructor
 Silverwood::Silverwood() : Income(true){

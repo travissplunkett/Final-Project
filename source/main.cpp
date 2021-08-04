@@ -80,6 +80,7 @@ void setExpenses(vector<Expense*> & _expenses){
                         College_Expenses* col = new College_Expenses;
                         _expenses.push_back(col);
                         college << col->toString();
+                        count1++;
                         break;
                     }
                     case 2:{
@@ -90,6 +91,7 @@ void setExpenses(vector<Expense*> & _expenses){
                         Recreation_Expense* rec = new Recreation_Expense;
                         _expenses.push_back(rec);
                         recreation << rec->toString();
+                        count2++;
                         break;
                     }
                     case 3:{
@@ -100,6 +102,7 @@ void setExpenses(vector<Expense*> & _expenses){
                         Expense* ex = new Expense(false);
                         _expenses.push_back(ex);
                         miscExpense << ex->toString();
+                        count3++;
                         break;
                     }
                     default:{
@@ -160,7 +163,7 @@ void setIncomes(vector<Income*> & _incomes){
                     case 1:{
                         if(count1<1){
                             pvIncome << "______________________________________________" << endl;
-                            pvIncome << "Photo/Video " << endl;
+                            pvIncome << "Photo/Video Incomes" << endl;
                         }    
                         PV* pv = new PV;
                         _incomes.push_back(pv);
@@ -180,7 +183,7 @@ void setIncomes(vector<Income*> & _incomes){
                         break;
                     }
                     case 3:{
-                        if(count2<11){
+                        if(count2<1){
                             miscIncome << "______________________________________________" << endl;
                             miscIncome << "Miscellaneous Incomes: " << endl;
                         }                        

@@ -43,44 +43,7 @@ class PV : public Income{
     public:
     //Constructor
     PV();
-    string toString(){
-        string str;
-        str += "Name: ";
-        str += name;
-        str += "\n";
-        str += "Type: ";
-        if(isPhoto == true){
-            str += "Photo ";
-        } else {
-            str += "Video ";
-        }
-        str += "\n";
-        str += "Wage: ";
-        str += hourly;
-        str += "\n";
-        str += "Fees (";
-        str += totalFees;
-        str += ")\n";
-        for(int i=0; i<fees.size(); i++){
-            str += "   ";
-            str += to_string(i+1);
-            str += ". ";
-            str += fees[i]->getName();
-            str += ": ";
-            str += fees[i]->getAmount();
-            str += "\n";
-        }
-        str += "Costs: ";
-        str += totalCost;
-        str += "\n";
-        str += "Net Revanue: ";
-        str += amount;
-        str += "\n";
-        str += "Total Profit: ";
-        str += profit;
-        str += "\n";
-        return str;
-    }
+    string toString();
 };
 
 class Silverwood : public Income{

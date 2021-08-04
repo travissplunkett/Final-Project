@@ -1,0 +1,15 @@
+______________________________________________
+Photo/Video 
+Name: 1
+Type: Photo 
+Wage: 1.000000
+Fees (1.000000)
+   1. 1: 1.000000
+Costs: 1.000000
+Net Revanue: 2.000000
+Total Profit: 1.000000
+
+______________________________________________
+Miscellaneous Incomes: 
+Name: 1
+Amount: 2.000000

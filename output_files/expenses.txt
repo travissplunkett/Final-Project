@@ -1,4 +1,17 @@
 ______________________________________________
+College Expenses: 
+Name: Whitworth
+Tuition: 12.000000
+Housing: 12.000000
+Books: 12.000000
+Total Amount: 36.000000
+______________________________________________
+Recreation Expenses: 
+Name: 12
+Amount: 12.000000
+______________________________________________
 Miscellaneous Expenses: 
-Name: one
-Amount: 56.000000
+Name: 12
+Amount: 12.000000
+Name: 12
+Amount: 12.000000

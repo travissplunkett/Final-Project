@@ -1,8 +1,0 @@
-______________________________________________
-Miscellaneous Expenses: 
-Name: misc
-Amount: 39.000000
-Name: misc 2
-Amount: 483.000000
-Name: Misc 3
-Amount: 3948.000000

@@ -1,6 +1,0 @@
-______________________________________________
-Miscellaneous Incomes: 
-Name: Micl
-Amount: 389.000000
-Name: Misc
-Amount: 2872.000000

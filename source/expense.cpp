@@ -37,15 +37,14 @@
         getline(cin,name);
         cout << "Tuition, yearly, costs: ";
         cin.ignore();
-        cin >> setprecision(2) >> tuition;
+        cin >> tuition;
         cout << "Housing, yearly, costs: ";
         cin.ignore();
-        cin >> setprecision(2) >> housing;
+        cin >> housing;
         cout << "Books, yearly, cost: ";
         cin.ignore();
-        cin >> setprecision(2) >> books;
-        setprecision(2);
-        amount = (int)(100*((tuition+housing+books)+0.5))/100;
+        cin >> books;
+        amount = tuition+housing+books;
     }
     //Returns a string of Expense data
     string College_Expenses::toString(){
@@ -63,8 +62,9 @@
         str += to_string(books);
         str += "\n";
         str += "Total Amount: ";
-        setprecision(2);
         str += to_string(amount);
+        str += "\n";
+        str += "\n";
         return str;
     }
     //Default constructor

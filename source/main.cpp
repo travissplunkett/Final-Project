@@ -10,8 +10,17 @@ using namespace std;
 //Allows user to create expenses
 void setExpenses(vector<Expense*> & _expenses);
 //Allows user to create incomes
+//Parameters: vector<Income*> & _incomes
+//Returns void
 void setIncomes(vector<Income*> & _incomes);
+//Writes finance data to output files
+//Parameters: string expensePath, string incomePath
+//Returns void
 void writeFinances(string expensePath, string incomePath);
+//Reports gross income and feedback message in a new output file
+//Parameters: vector<Income*> & _incomes, vector <Expense*> & _expenses
+//Returns void
+void gross(vector<Income*> & _incomes, vector <Expense*> & _expenses);
 
 int main(){
     cout << "______________________________________________________________________________" << endl;
@@ -25,6 +34,13 @@ int main(){
     setExpenses(expenses);
     setIncomes(incomes);
     writeFinances(".\\output_files\\expenses.txt",".\\output_files\\incomes.txt");
+    gross(incomes,expenses);//Gross
+    
+    expenses.clear();//Delete values in vector
+    incomes.clear();//Delete values in
+
+
+
     return 0;
 }
 
@@ -32,6 +48,7 @@ int main(){
 
 //Allows user to create expenses
 void setExpenses(vector<Expense*> & _expenses){
+    //Open output files
     ofstream expensesFile(".\\output_files\\expenses.txt");
     ofstream college(".\\output_files\\college.txt");
     ofstream recreation(".\\output_files\\recreation.txt");
@@ -73,10 +90,12 @@ void setExpenses(vector<Expense*> & _expenses){
             } else {
                 switch (choice) {
                     case 1:{
+                        //Create heading
                         if(count1 < 1){
                             college << "______________________________________________" << endl;
                             college << "College Expenses: " << endl;
                         }
+                        //Add new object to vector and write data to file
                         College_Expenses* col = new College_Expenses;
                         _expenses.push_back(col);
                         college << col->toString();
@@ -84,10 +103,12 @@ void setExpenses(vector<Expense*> & _expenses){
                         break;
                     }
                     case 2:{
+                        //Add heading
                         if(count2 < 1){
                             recreation << "______________________________________________" << endl;
                             recreation << "Recreation Expenses: " << endl;
                         }
+                        //Add new object to vector and write data to file
                         Recreation_Expense* rec = new Recreation_Expense;
                         _expenses.push_back(rec);
                         recreation << rec->toString();
@@ -95,10 +116,12 @@ void setExpenses(vector<Expense*> & _expenses){
                         break;
                     }
                     case 3:{
+                        //Add heading
                         if(count3 < 1){
                             miscExpense << "______________________________________________" << endl;
                             miscExpense << "Miscellaneous Expenses: " << endl;
                         }
+                        //Add new object to vector and write data to file
                         Expense* ex = new Expense(false);
                         _expenses.push_back(ex);
                         miscExpense << ex->toString();
@@ -118,6 +141,7 @@ void setExpenses(vector<Expense*> & _expenses){
 
 //Allows user to create expenses
 void setIncomes(vector<Income*> & _incomes){
+    //Open output files
     ofstream incomesFile(".\\output_files\\incomes.txt");
     ofstream miscIncome(".\\output_files\\misc.txt");
     ofstream pvIncome(".\\output_files\\pv.txt");
@@ -161,51 +185,64 @@ void setIncomes(vector<Income*> & _incomes){
                 cout << "Adding income. " << endl;
                 switch (choice) {
                     case 1:{
+                        //Create Heading
                         if(count1<1){
                             pvIncome << "______________________________________________" << endl;
                             pvIncome << "Photo/Video Incomes" << endl;
-                        }    
+                        }  
+                        //Add new PV to vector  
                         PV* pv = new PV;
                         _incomes.push_back(pv);
+                        //Write to file
                         pvIncome << pv->toString() << endl;
-                        count1++;
+                        count1++;//Increment count1
                         break;
                     }
                     case 2:{
+                        //Write heading
                         if(count2<1){
                             silverwoodIncome << "______________________________________________" << endl;
                             silverwoodIncome << "Silverwood " << endl;
                         }
+                        //Add new Silverwood to vector
                         Silverwood* s = new Silverwood;
                         _incomes.push_back(s);
+                        //Write to file
                         silverwoodIncome << s->toString() << endl;
+                        //Increment count2
                         count2++;
                         break;
                     }
                     case 3:{
-                        if(count2<1){
+                        //Add heading
+                        if(count3<1){
                             miscIncome << "______________________________________________" << endl;
                             miscIncome << "Miscellaneous Incomes: " << endl;
-                        }                        
+                        }     
+                        //Add new Income to vector                   
                         Income* m = new Income(false);
                         _incomes.push_back(m);
+                        //Write data to file
                         miscIncome << m->toString() << endl;
+                        //Increment count3
                         count3++;
                         break;
                     }
                     default:{
+                        //If invalid entry, tell user
                         cout << "Invalid entry." << endl;
                         break;
                     }
                 }
             }
         }
-        loop_index++;
+        loop_index++;//Increment loop index
     }
 }
 
 void writeFinances(string expensePath, string incomePath){
     cout << "Writing report..." << endl;
+    //Open input and output files
     ofstream report(".\\output_files\\report.txt");
     fstream exp(expensePath);
     ifstream col(".\\output_files\\college.txt");
@@ -217,7 +254,8 @@ void writeFinances(string expensePath, string incomePath){
     ifstream silverwoodInc(".\\output_files\\silverwood.txt");
     string line;
 
-    
+    //READ DATA FROM ALL FILES
+    // AND WRITE ALL DATA TO REPORT FILE
     col.seekg(0,ios::beg);
     cout << "Reading expenses..." << endl;
     while(getline(col,line)){
@@ -258,5 +296,40 @@ void writeFinances(string expensePath, string incomePath){
     while (getline(inc,line)){
         report << line << endl;
     }
-    cout << "Incomes read and written. " << endl << endl;
+    cout << "Incomes read and written. " << endl;
+    cout << "Closing files..." << endl;
+    report.close();
+    exp.close();
+    col.close();
+    rec.close();
+    miscExp.close();
+    inc.close();
+    miscInc.close();
+    pvInc.close();
+    silverwoodInc.close();
+
+
+}
+
+void gross(vector<Income*> & _incomes, vector <Expense*> & _expenses){
+    float totalIncome = 0;//Gross income
+    //Calculate total income
+    for(int i=0;i<_incomes.size();i++){
+        totalIncome += _incomes[i]->getAmount();
+    }
+    //Calculate total expenses
+    float totalExpenses = 0;
+    for(int i=0;i<_incomes.size();i++){
+        totalExpenses += _expenses[i]->getAmount();
+    }
+    //Calculate and report gross earnings
+    ofstream gross(".\\output_files\\gross.txt");//Open output file
+    gross << "GROSS EARNINGS: " << to_string(totalIncome - totalExpenses) << endl;
+    gross << "\n";
+    //Provide feedback message
+    if((totalIncome - totalExpenses)>0){
+        gross << "Earned enough to cover expenses." << endl;
+    } else {
+        gross << "Might need to work some more to make up the deficit!" << endl;
+    }
 }

@@ -63,7 +63,6 @@ string Income::toString() const{
 Fee::Fee() : Income(true){
     cout << "Enter amount: ";
     cin >> amount;
-    amount = (int)(100*((amount)+0.5))/100; //Sets precision to two decimal points
     perHour = 0;
     hourly = 0;
     hours = 0;

@@ -34,11 +34,11 @@ class College_Expenses : public Expense {
     public:
     //Default constructor
     College_Expenses();
-     //Establishes that >> returns a string of College_Expense data
-    friend ofstream &operator<<(ofstream &input, const College_Expenses & ce) {
-      input << "Tuition: " << ce.tuition << " Housing: " << ce.housing << " Books: " << ce.books << " ";
-      return input;
-    }
+    //  //Establishes that >> returns a string of College_Expense data
+    // ofstream & operator <<(const College_Expenses & ce) {
+    //   this << "Tuition: " << ce.tuition << " Housing: " << ce.housing << " Books: " << ce.books << " ";
+    //   return input;
+    // }
     //Returns a string of Expense data
     string toString();
 
